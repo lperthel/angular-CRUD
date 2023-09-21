@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CrudRoutingModule } from './crud-routing.module';
 import { DetailsComponent } from './details/details.component';
 import { CreateComponent } from './create/create.component';
@@ -20,7 +20,8 @@ import { HomeComponent } from './home/home.component';
     CommonModule,
     CrudRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class CrudModule { }
