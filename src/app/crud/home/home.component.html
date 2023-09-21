@@ -9,7 +9,9 @@
                 <th>Description</th>
                 <th>Price</th>
                 <th>Quantity</th>
-                <th>Action</th>
+                <th>View Seperately</th>
+                <th>Remove</th>
+                <th>Update</th>
             </tr>
         </thead>
         <tbody>
@@ -20,8 +22,13 @@
                 <td>{{ product.price | currency }}</td> <!-- Display price as currency -->
                 <td>{{ product.quantity }}</td>
                 <td>
+                    <button type="button" [routerLink]="['/crud/details/', product.id]">View Seperatly</button>
+                </td>
+                    <td>
+                    <button type="button" (click)="deleteProduct(product.id)">Remove</button>
+                </td>
+                    <td>
                     <button type="button" [routerLink]="['/crud/update/', product.id]">Update</button>
-                    <!-- <button type="button" (click)="deleteProduct(product.id)">Remove</button> -->
                 </td>
             </tr>
         </tbody>

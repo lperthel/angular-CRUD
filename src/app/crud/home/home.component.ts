@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CrudService }  from '../crud.service';
 import { Product } from '../product';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -10,7 +10,7 @@ import { Product } from '../product';
 export class HomeComponent implements OnInit{
   products: Product[] = [];
 
-  constructor(public crudService: CrudService) { }
+  constructor(public crudService: CrudService,private router: Router) { }
 
   ngOnInit() {
 
@@ -18,5 +18,13 @@ export class HomeComponent implements OnInit{
       console.log(data);
       this.products = data;
     })  
+  }
+
+  deleteProduct(id:number) {
+    this.crudService.delete(id.toString()).subscribe(res => {
+         console.log('Product deleted successfully!');
+         this.products = this.products.filter(product => product.id !== id);
+         this.router.navigate(['/crud/home']);
+    })
   }
 }

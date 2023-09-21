@@ -1,1 +1,36 @@
-<p>update works!</p>
+<div>
+    <h1>Product</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Product Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ product.id }}</td>
+                <td>
+                    <label for="productName">Product Name</label>
+                    <input id="productName" [(ngModel)]="product.name" name="productName" placeholder="Enter product name" />
+                </td>
+                <td>
+                    <label for="productDescription">Description</label>
+                    <input id="productDescription" [(ngModel)]="product.description" name="productDescription" placeholder="Enter product description" />
+                </td>
+                <td>
+                    <label for="productPrice">Price</label>
+                    <input id="productPrice" [(ngModel)]="product.price" name="productPrice" type="number" placeholder="Enter product price" />
+                </td>
+                <td>
+                    <label for="productQuantity">Quantity</label>
+                    <input id="productQuantity" [(ngModel)]="product.quantity" name="productQuantity" type="number" placeholder="Enter product quantity" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button (click)="updateProduct()">Update Product</button> <!-- Added button to call updateProduct method -->
+</div>
