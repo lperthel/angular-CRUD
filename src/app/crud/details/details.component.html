@@ -1,23 +1,26 @@
-<div>
-    <h1>Product</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Product Name</th>
-                <th>Description</th>
-                <th>Price</th>
-                <th>Quantity</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>  <td>{{ product.id }}</td>
-                <td>{{ product.name }}</td>
-                <td>{{ product.description }}</td>
-                <td>{{ product.price | currency }}</td> <!-- Display price as currency -->
-                <td>{{ product.quantity }}</td>
-            
-            </tr>
-        </tbody>
-    </table>
-</div>
+<section aria-labelledby="productHeading">
+    <h1 id="productHeading">Product</h1>
+    <article>
+        <table role="table" aria-describedby="productTableCaption">
+            <caption id="productTableCaption">A table displaying details about a product</caption>
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ product.id }}</td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.description }}</td>
+                    <td>{{ product.price | currency }}</td>
+                    <td>{{ product.quantity }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </article>
+</section>

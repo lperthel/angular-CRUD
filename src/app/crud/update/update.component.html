@@ -1,36 +1,42 @@
-<div>
-    <h1>Product</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Product Name</th>
-                <th>Description</th>
-                <th>Price</th>
-                <th>Quantity</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>{{ product.id }}</td>
-                <td>
-                    <label for="productName">Product Name</label>
-                    <input id="productName" [(ngModel)]="product.name" name="productName" placeholder="Enter product name" />
-                </td>
-                <td>
-                    <label for="productDescription">Description</label>
-                    <input id="productDescription" [(ngModel)]="product.description" name="productDescription" placeholder="Enter product description" />
-                </td>
-                <td>
-                    <label for="productPrice">Price</label>
-                    <input id="productPrice" [(ngModel)]="product.price" name="productPrice" type="number" placeholder="Enter product price" />
-                </td>
-                <td>
-                    <label for="productQuantity">Quantity</label>
-                    <input id="productQuantity" [(ngModel)]="product.quantity" name="productQuantity" type="number" placeholder="Enter product quantity" />
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <button (click)="updateProduct()">Update Product</button> <!-- Added button to call updateProduct method -->
-</div>
+<section aria-labelledby="productHeading">
+    <h1 id="productHeading">Product</h1>
+    <article>
+        <table role="table" aria-describedby="productTableCaption">
+            <caption id="productTableCaption">A table displaying details about a product with options to update each field</caption>
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ product.id }}</td>
+                    <td>
+                        <label for="productName">Product Name</label>
+                        <input id="productName" [(ngModel)]="product.name" name="productName" placeholder="Enter product name" />
+                    </td>
+                    <td>
+                        <label for="productDescription">Description</label>
+                        <input id="productDescription" [(ngModel)]="product.description" name="productDescription" placeholder="Enter product description" />
+                    </td>
+                    <td>
+                        <label for="productPrice">Price</label>
+                        <input id="productPrice" [(ngModel)]="product.price" name="productPrice" type="number" placeholder="Enter product price" />
+                    </td>
+                    <td>
+                        <label for="productQuantity">Quantity</label>
+                        <input id="productQuantity" [(ngModel)]="product.quantity" name="productQuantity" type="number" placeholder="Enter product quantity" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="button" (click)="updateProduct()" aria-label="Update product details">Update Product</button>
+        <button type="button" (click)="cancel()" aria-label="Cancel update of product details">Cancel</button>
+    </article>
+</section>
+
+

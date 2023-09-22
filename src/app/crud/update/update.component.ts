@@ -38,4 +38,7 @@ export class UpdateComponent {
       });
     }
   }
+    cancel() {
+      this.router.navigate(['/crud/home']);
+        }
 }
