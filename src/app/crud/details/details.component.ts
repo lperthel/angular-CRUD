@@ -29,7 +29,7 @@ export class DetailsComponent implements OnInit {
           },
           (error) => {
             console.error('Error fetching product details', error);
-            this.errorMessage = 'Error fetching product details. Please try again later.'; // Set errorMessage on error
+            this.errorMessage = 'Error fetching product details. Please try again later.';
           }
         );
       }
@@ -38,10 +38,6 @@ export class DetailsComponent implements OnInit {
 
   cancel() {
     this.router.navigate(['/crud/home']);
-  }
-
-  get isError(): boolean {
-    return this.errorMessage !== null;
   }
   
 }

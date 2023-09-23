@@ -5,9 +5,11 @@
         
         <!-- Article Region for Table -->
         <article aria-labelledby="productTableCaption">
-            <div *ngIf="isError" class="error-message">
+            <div *ngIf="errorMessage; else elseBlock" class="error-message"><!--{{errorMessage}}-->Content null</div>
+            <ng-template #elseBlock>Content to render when value is null.</ng-template>
+            <!--  <div *ngIf="isError" class="error-message">
                 {{ errorMessage }}
-            </div>
+            </div>-->
             <table role="table" aria-describedby="productTableCaption">
                 <caption id="productTableCaption" class="sr-only">A table displaying details about a product</caption>
                 <thead>
