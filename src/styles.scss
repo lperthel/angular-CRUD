@@ -1,1 +1,149 @@
-/* You can add global styles to this file, and also import other style files */
+/* Container */
+section {
+    width: 60%; /* Increased to 60% for better spacing */
+    margin: auto;
+    background-color: #ffffff; /* White background color for the section */
+}
+
+/* Headings */
+h1 {
+    font-size: 2rem; /* Scalable font size */
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333333; /* Dark color for better contrast */
+}
+
+/* Table */
+table {
+    width: 100%;
+    border-collapse: collapse; /* Collapse borders to avoid double borders */
+    margin-bottom: 20px; /* Space below the table */
+}
+
+/* Table Header */
+thead th {
+    background-color: #f2f2f2; /* Light grey background color for header */
+    text-align: left;
+    padding: 10px; /* Padding inside header cells */
+    border-bottom: 2px solid #ddd; /* Border below header cells */
+}
+
+/* Table Body */
+tbody td {
+    padding: 10px; /* Padding inside body cells */
+    border-bottom: 1px solid #ddd; /* Border below body cells */
+}
+
+/* Last Row of Table Body */
+tbody tr:last-child td {
+    border-bottom: none; /* Remove border from the last row */
+}
+
+/* Form Group */
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* Labels */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333333; /* Dark color for better contrast */
+}
+
+/* Input and Textarea */
+input[type="text"],
+input[type="number"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    color: #333333; /* Dark color for better contrast */
+}
+
+/* Focus Indicator */
+input[type="text"]:focus,
+input[type="number"]:focus,
+textarea:focus,
+button:focus {
+    border-color: #007bff;
+    outline: 2px solid #007bff; /* Added outline for better visibility */
+    box-shadow: 0 0 5px #007bff;
+}
+
+/* Placeholder Text */
+::placeholder {
+    color: #595959; /* Darker grey color for better contrast */
+}
+
+/* Buttons */
+button,
+button[type="button"],
+button[type="submit"] {
+    display: inline-block;
+    background-color: #007bff; /* Blue background color for the button */
+    color: #ffffff; /* White color for the button text */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Hover and Focus State for Button */
+button:hover,
+button:focus,
+button[type="button"]:hover,
+button[type="button"]:focus,
+button[type="submit"]:hover,
+button[type="submit"]:focus {
+    background-color: #0056b3; /* Darker blue color for hover and focus state */
+}
+
+/* Screen Reader Only Text */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* Styles for aria-live regions */
+[aria-live="polite"],
+[aria-live="assertive"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+}
+
+[aria-live="assertive"] {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #ffdddd; /* Light red background color */
+    color: #a00; /* Dark red text color */
+    padding: 10px;
+    z-index: 1000;
+}
+
+/* Error Message */
+.error-message {
+    background-color: #ffdddd; /* Light red background color */
+    color: #a00; /* Dark red text color */
+    padding: 10px;
+    margin-bottom: 20px; /* Space below the error message */
+    border-radius: 4px;
+}
+

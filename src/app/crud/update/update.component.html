@@ -1,42 +1,32 @@
-<section aria-labelledby="productHeading">
-    <h1 id="productHeading">Product</h1>
-    <article>
-        <table role="table" aria-describedby="productTableCaption">
-            <caption id="productTableCaption">A table displaying details about a product with options to update each field</caption>
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Product Name</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Quantity</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>{{ product.id }}</td>
-                    <td>
-                        <label for="productName">Product Name</label>
-                        <input id="productName" [(ngModel)]="product.name" name="productName" placeholder="Enter product name" />
-                    </td>
-                    <td>
-                        <label for="productDescription">Description</label>
-                        <input id="productDescription" [(ngModel)]="product.description" name="productDescription" placeholder="Enter product description" />
-                    </td>
-                    <td>
-                        <label for="productPrice">Price</label>
-                        <input id="productPrice" [(ngModel)]="product.price" name="productPrice" type="number" placeholder="Enter product price" />
-                    </td>
-                    <td>
-                        <label for="productQuantity">Quantity</label>
-                        <input id="productQuantity" [(ngModel)]="product.quantity" name="productQuantity" type="number" placeholder="Enter product quantity" />
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <button type="button" (click)="updateProduct()" aria-label="Update product details">Update Product</button>
-        <button type="button" (click)="cancel()" aria-label="Cancel update of product details">Cancel</button>
-    </article>
-</section>
-
-
+<!-- Main Content Region -->
+<main aria-labelledby="productHeading">
+    <section aria-labelledby="productHeading">
+        <h1 id="productHeading">Product</h1>
+        
+        <!-- Article Region for Form -->
+        <article aria-labelledby="articleLabel">
+            <h2 id="articleLabel" class="sr-only">Product Update Form</h2> <!-- Screen reader only text -->
+            <form [formGroup]="productForm" (ngSubmit)="updateProduct()" novalidate aria-labelledby="formLabel">
+                <p id="formLabel" class="sr-only">Use this form to update the product details.</p> <!-- Screen reader only text -->
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" formControlName="name" class="form-control" maxlength="20" placeholder="Enter product name" aria-required="true" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" class="form-control" formControlName="description" rows="3" maxlength="50" placeholder="Enter product description" aria-required="true" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="price">Price</label>
+                    <input type="number" formControlName="price" class="form-control" id="price" placeholder="Enter product price" aria-required="true" required>
+                </div>
+                <div class="form-group">
+                    <label for="quantity">Quantity</label>
+                    <input type="number" formControlName="quantity" class="form-control" id="quantity" placeholder="Enter product quantity" aria-required="true" required>
+                </div>
+                <button type="submit" aria-label="Update product details">Update Product</button>
+                <button type="button" (click)="cancel()" aria-label="Cancel update of product details">Cancel</button>
+            </form>
+        </article>
+    </section>
+</main>

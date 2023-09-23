@@ -1,39 +1,48 @@
-<section aria-labelledby="productsHeading">
-    <h1 id="productsHeading">My Products</h1>
+<!-- Navigation Region -->
+<nav aria-label="Page Navigation">
     <button type="button" [routerLink]="'/crud/create/'" aria-label="Create a new product">Create new product</button>
-    <article>
-        <table role="table" aria-describedby="productsTableCaption">
-            <caption id="productsTableCaption">A table displaying details about products with options to view, remove, or update each product</caption>
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Product Name</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">View Separately</th>
-                    <th scope="col">Remove</th>
-                    <th scope="col">Update</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let product of products">
-                    <td>{{ product.id }}</td>
-                    <td>{{ product.name }}</td>
-                    <td>{{ product.description }}</td>
-                    <td>{{ product.price | currency }}</td>
-                    <td>{{ product.quantity }}</td>
-                    <td>
-                        <button type="button" [routerLink]="['/crud/details/', product.id]" [attr.aria-label]="'View details of ' + product.name">View Separately</button>
-                    </td>
-                    <td>
-                        <button type="button" (click)="deleteProduct(product.id)" [attr.aria-label]="'Remove ' + product.name">Remove</button>
-                    </td>
-                    <td>
-                        <button type="button" [routerLink]="['/crud/update/', product.id]" [attr.aria-label]="'Update ' + product.name">Update</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </article>
-</section>
+</nav>
+
+<!-- Main Content Region -->
+<main aria-labelledby="productsHeading">
+    <section aria-labelledby="productsHeading">
+        <h1 id="productsHeading">My Products</h1>
+        
+        <!-- Article Region for Table -->
+        <article aria-labelledby="productsTableCaption">
+            <table role="table" aria-describedby="productsTableCaption">
+                <caption id="productsTableCaption">A table displaying details about products with options to view, remove, or update each product</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Product Name</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">View Separately</th>
+                        <th scope="col">Remove</th>
+                        <th scope="col">Update</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let product of products">
+                        <td>{{ product.id }}</td>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.description }}</td>
+                        <td>{{ product.price | currency }}</td>
+                        <td>{{ product.quantity }}</td>
+                        <td>
+                            <button type="button" [routerLink]="['/crud/details/', product.id]" [attr.aria-label]="'View details of ' + product.name">View Separately</button>
+                        </td>
+                        <td>
+                            <button type="button" (click)="deleteProduct(product.id)" [attr.aria-label]="'Remove ' + product.name">Remove</button>
+                        </td>
+                        <td>
+                            <button type="button" [routerLink]="['/crud/update/', product.id]" [attr.aria-label]="'Update ' + product.name">Update</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+    </section>
+</main>

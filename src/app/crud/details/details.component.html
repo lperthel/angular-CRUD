@@ -1,26 +1,35 @@
-<section aria-labelledby="productHeading">
-    <h1 id="productHeading">Product</h1>
-    <article>
-        <table role="table" aria-describedby="productTableCaption">
-            <caption id="productTableCaption">A table displaying details about a product</caption>
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Product Name</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Quantity</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>{{ product.id }}</td>
-                    <td>{{ product.name }}</td>
-                    <td>{{ product.description }}</td>
-                    <td>{{ product.price | currency }}</td>
-                    <td>{{ product.quantity }}</td>
-                </tr>
-            </tbody>
-        </table>
-    </article>
-</section>
+<!-- Main Content Region -->
+<main aria-labelledby="productHeading">
+    <section aria-labelledby="productHeading">
+        <h1 id="productHeading">Product</h1>
+        
+        <!-- Article Region for Table -->
+        <article aria-labelledby="productTableCaption">
+            <div *ngIf="isError" class="error-message">
+                {{ errorMessage }}
+            </div>
+            <table role="table" aria-describedby="productTableCaption">
+                <caption id="productTableCaption" class="sr-only">A table displaying details about a product</caption>
+                <thead>
+                    <tr>
+                        <th scope="col" role="columnheader">#</th>
+                        <th scope="col" role="columnheader">Product Name</th>
+                        <th scope="col" role="columnheader">Description</th>
+                        <th scope="col" role="columnheader">Price</th>
+                        <th scope="col" role="columnheader">Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ product.id }}</td>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.description }}</td>
+                        <td>{{ product.price | currency }}</td>
+                        <td>{{ product.quantity }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <button type="button" (click)="cancel()" aria-label="Go back to home page">Go Back</button>
+        </article>
+    </section>
+</main>
