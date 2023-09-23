@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CrudService } from '../crud.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'; // Import Validators
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 
 export class CreateComponent implements OnInit {
   productForm!: FormGroup;
+  formSubmitted = false; // New property to track whether the form has been submitted
 
   constructor(
     public fb: FormBuilder,
@@ -19,21 +20,19 @@ export class CreateComponent implements OnInit {
   ){ }
 
   ngOnInit() {
-    // Initialize the productForm with form controls and validators
     this.productForm = this.fb.group({
-      name: ['', [Validators.required, Validators.maxLength(20)]], // Added Validators
-      description: ['', [Validators.required, Validators.maxLength(50)]], // Added Validators
-      price: ['', [Validators.required, Validators.min(0)]], // Added Validators
-      quantity: ['', [Validators.required, Validators.min(0)]], // Added Validators
+      name: ['', [Validators.required, Validators.maxLength(20)]],
+      description: ['', [Validators.required, Validators.maxLength(50)]],
+      price: ['', [Validators.required, Validators.min(0)]],
+      quantity: ['', [Validators.required, Validators.min(0)]],
     });
   }
 
   submitForm() {
-    if (this.productForm.valid) { // Check if form is valid
-      // Send the form data to the CRUD service for creating a product
+    this.formSubmitted = true; // Set formSubmitted to true when the form is submitted
+    if (this.productForm.valid) {
       this.crudService.create(this.productForm.value).subscribe(res => {
         console.log('Product created!');
-        // Redirect to the home page after successful creation
         this.router.navigateByUrl('/crud/home');
       });
     } else {

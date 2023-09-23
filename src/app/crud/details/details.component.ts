@@ -10,13 +10,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class DetailsComponent implements OnInit {
   product!: Product;
-  errorMessage: string | null = null; // Initialize errorMessage to null
+  errorMessage: string = 'Error fetching product details. Please try again later.'; // Initialize errorMessage to null
+  error: boolean | null = false;
 
   constructor(
     public crudService: CrudService,
     private route: ActivatedRoute,
     private router: Router
-  ) { }
+  ) { 
+  }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -28,8 +30,8 @@ export class DetailsComponent implements OnInit {
             this.product = data;
           },
           (error) => {
-            console.error('Error fetching product details', error);
-            this.errorMessage = 'Error fetching product details. Please try again later.';
+            console.error('Error fetching product details!!!!!', error);
+            this.error = true;
           }
         );
       }
