@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CrudService } from '../crud.service';
@@ -8,7 +8,7 @@ import { CrudService } from '../crud.service';
   templateUrl: './create.component.html',
   styleUrls: ['./create.component.scss'],
 })
-export class CreateComponent implements OnInit {
+export class CreateComponent {
   productForm!: FormGroup;
   formSubmitted = false; // New property to track whether the form has been submitted
 
@@ -16,9 +16,7 @@ export class CreateComponent implements OnInit {
     public fb: FormBuilder,
     private router: Router,
     public crudService: CrudService
-  ) {}
-
-  ngOnInit() {
+  ) {
     this.productForm = this.fb.group({
       name: ['', [Validators.required, Validators.maxLength(20)]],
       description: ['', [Validators.required, Validators.maxLength(50)]],
@@ -26,6 +24,8 @@ export class CreateComponent implements OnInit {
       quantity: ['', [Validators.required, Validators.min(0)]],
     });
   }
+
+  //ngOnInit() {}
 
   submitForm() {
     this.formSubmitted = true; // Set formSubmitted to true when the form is submitted
