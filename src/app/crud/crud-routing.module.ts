@@ -16,7 +16,7 @@ import { HomeComponent } from './home/home.component';
 import { UpdateComponent } from './update/update.component';
 
 const CRUD_PATH = 'crud';
-const DEFAULT_TITLE_SUFFIX = " - lperthel's Prodcut Inventory";
+const DEFAULT_TITLE_SUFFIX = " - lperthel's Angular Inventory";
 const routes: Routes = [
   { path: CRUD_PATH, redirectTo: `${CRUD_PATH}/home`, pathMatch: 'full' },
   {
