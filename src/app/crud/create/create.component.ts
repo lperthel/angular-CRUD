@@ -42,4 +42,11 @@ export class CreateComponent implements OnInit {
   cancel() {
     this.router.navigate(['/crud/home']);
   }
+
+  isInvalid(controlName: string): boolean {
+    const control = this.productForm.get(controlName);
+    return (
+      !!control && control.invalid && (control.touched || this.formSubmitted)
+    );
+  }
 }
