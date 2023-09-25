@@ -25,11 +25,10 @@ export class CreateComponent {
     });
   }
 
-  //ngOnInit() {}
-
   submitForm() {
     this.formSubmitted = true; // Set formSubmitted to true when the form is submitted
     if (this.productForm.valid) {
+      console.log(this.productForm.value);
       this.crudService.create(this.productForm.value).subscribe((res) => {
         console.log('Product created!');
         this.router.navigateByUrl('/crud/home');

@@ -1,10 +1,9 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { of } from 'rxjs';
 import { CrudService } from '../crud.service';
-import { Product } from '../product';
 import { CreateComponent } from './create.component';
 
 describe('CreateComponent', () => {
@@ -12,6 +11,7 @@ describe('CreateComponent', () => {
   let fixture: ComponentFixture<CreateComponent>;
   let crudService: jasmine.SpyObj<CrudService>;
   let router: jasmine.SpyObj<Router>;
+  const fb: FormBuilder = new FormBuilder();
 
   beforeEach(() => {
     crudService = jasmine.createSpyObj('CrudService', ['create']);
@@ -23,6 +23,7 @@ describe('CreateComponent', () => {
       providers: [
         { provide: CrudService, useValue: crudService },
         { provide: Router, useValue: router },
+        { provide: FormBuilder, useValue: fb },
       ],
     }).compileComponents();
 
@@ -103,20 +104,21 @@ describe('CreateComponent', () => {
       component.productForm.get('name')?.markAsTouched();
       expect(component.isInvalid('name')).toBeTrue();
     });
+
     it('should submit form and navigate to home if form is valid', () => {
-      const product: Product = {
-        id: 0,
+      const productForm: FormGroup = fb.group({
         name: 'Test Product',
         description: 'Test Description',
         price: 10,
         quantity: 5,
-      };
-      crudService.create.and.returnValue(of(product));
-      component.productForm.setValue(product);
+      });
+
+      crudService.create.and.returnValue(of(productForm.value));
+      component.productForm.setValue(productForm.value);
 
       component.submitForm();
 
-      expect(crudService.create).toHaveBeenCalledWith(product);
+      expect(crudService.create).toHaveBeenCalledWith(productForm.value);
       expect(router.navigateByUrl).toHaveBeenCalledWith('/crud/home');
     });
   });
