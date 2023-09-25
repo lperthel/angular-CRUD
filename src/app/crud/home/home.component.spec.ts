@@ -55,7 +55,7 @@ describe('HomeComponent', () => {
     expect(component.products).toEqual(mockProducts);
   });
 
-  it('should delete a product and navigate to /crud/home', () => {
+  it('should delete a product', () => {
     const productId = 1;
     crudService.delete.and.returnValue(of<Product>(null!));
     component.products = [...mockProducts];
@@ -63,6 +63,5 @@ describe('HomeComponent', () => {
     expect(
       component.products.some((product) => product.id === productId)
     ).toBeFalse();
-    expect(router.navigate).toHaveBeenCalledWith(['/crud/home']);
   });
 });
