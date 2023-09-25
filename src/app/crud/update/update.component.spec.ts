@@ -1,6 +1,6 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { of } from 'rxjs';
 import { CrudService } from '../crud.service';
@@ -13,6 +13,7 @@ describe('UpdateComponent', () => {
   let crudService: jasmine.SpyObj<CrudService>;
   let router: jasmine.SpyObj<Router>;
   let activatedRoute: ActivatedRoute;
+  const fb: FormBuilder = new FormBuilder();
 
   const mockProduct: Product = {
     id: 1,
@@ -26,7 +27,6 @@ describe('UpdateComponent', () => {
     crudService = jasmine.createSpyObj('CrudService', ['getById', 'update']);
     router = jasmine.createSpyObj('Router', ['navigate']);
     activatedRoute = { params: of({ productId: '1' }) } as any;
-
     TestBed.configureTestingModule({
       declarations: [UpdateComponent],
       imports: [ReactiveFormsModule, HttpClientTestingModule],
@@ -34,6 +34,7 @@ describe('UpdateComponent', () => {
         { provide: CrudService, useValue: crudService },
         { provide: Router, useValue: router },
         { provide: ActivatedRoute, useValue: activatedRoute },
+        { provide: FormBuilder, useValue: fb },
       ],
     }).compileComponents();
 
@@ -45,13 +46,19 @@ describe('UpdateComponent', () => {
   });
 
   describe('Update Component tests', () => {
-    it('should create', () => {
-      expect(component).toBeTruthy();
+    it('should initialize form with product data', () => {
+      const productForm: FormGroup = fb.group({
+        name: 'Test Product',
+        description: 'Test Description',
+        price: 10,
+        quantity: 5,
+      });
+      expect(component.productForm.value).toEqual(productForm.value);
+      expect(component.initialProduct).toEqual(mockProduct);
     });
 
-    it('should initialize form with product data', () => {
-      expect(component.productForm.value).toEqual(mockProduct);
-      expect(component.initialProduct).toEqual(mockProduct);
+    it('should create', () => {
+      expect(component).toBeTruthy();
     });
 
     it('should not update product if form is invalid', () => {
