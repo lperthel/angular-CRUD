@@ -58,7 +58,7 @@ describe('HomeComponent', () => {
   it('should delete a product and navigate to /crud/home', () => {
     const productId = 1;
     crudService.delete.and.returnValue(of<Product>(null!));
-    component.products = [...mockProducts]; // Initialize component products with mockProducts
+    component.products = [...mockProducts];
     component.deleteProduct(productId);
     expect(
       component.products.some((product) => product.id === productId)
