@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CrudService } from '../crud.service';
@@ -9,11 +15,13 @@ import { Product } from '../product';
   templateUrl: './update.component.html',
   styleUrls: ['./update.component.scss'],
 })
-export class UpdateComponent implements OnInit {
+export class UpdateComponent implements OnInit, AfterViewInit {
   productForm!: FormGroup;
   product!: Product;
   initialProduct!: Product;
   formChanged = true;
+
+  @ViewChild('startReadingHere') startReadingHere!: ElementRef;
 
   constructor(
     private fb: FormBuilder,
@@ -21,6 +29,10 @@ export class UpdateComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router
   ) {}
+
+  ngAfterViewInit() {
+    this.startReadingHere.nativeElement.focus();
+  }
 
   ngOnInit() {
     this.productForm = this.fb.group({

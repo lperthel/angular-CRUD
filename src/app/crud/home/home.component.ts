@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { CrudService } from '../crud.service';
 import { Product } from '../product';
@@ -7,10 +13,15 @@ import { Product } from '../product';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit {
   products: Product[] = [];
+  @ViewChild('startReadingHere') startReadingHere!: ElementRef;
 
   constructor(public crudService: CrudService, private router: Router) {}
+
+  ngAfterViewInit() {
+    this.startReadingHere.nativeElement.focus();
+  }
 
   ngOnInit() {
     this.crudService.getAll().subscribe((data: Product[]) => {

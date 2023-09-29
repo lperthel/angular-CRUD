@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CrudService } from '../crud.service';
@@ -8,7 +8,8 @@ import { CrudService } from '../crud.service';
   templateUrl: './create.component.html',
   styleUrls: ['./create.component.scss'],
 })
-export class CreateComponent {
+export class CreateComponent implements AfterViewInit {
+  @ViewChild('startReadingHere') startReadingHere!: ElementRef;
   productForm!: FormGroup;
   formSubmitted = false; // New property to track whether the form has been submitted
 
@@ -23,6 +24,10 @@ export class CreateComponent {
       price: ['', [Validators.required, Validators.min(0)]],
       quantity: ['', [Validators.required, Validators.min(0)]],
     });
+  }
+
+  ngAfterViewInit() {
+    this.startReadingHere.nativeElement.focus();
   }
 
   submitForm() {
