@@ -35,7 +35,9 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let product of products">
+          @for(product of products; track product.id){
+          <tr>
+            <!-- <tr *ngFor="let product of products"> -->
             <th>{{ product.id }}</th>
             <td>{{ product.name }}</td>
             <td>{{ product.description }}</td>
@@ -69,6 +71,7 @@
               </button>
             </td>
           </tr>
+          }
         </tbody>
       </table>
     </article>
